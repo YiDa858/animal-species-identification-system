@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/js/BootStrap.js" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/dropzone.css" type="text/css"/>
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/BootStrap.js" crossorigin="anonymous"></script>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/animate.min.css" rel="stylesheet">
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet">
+    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="../static/css/responsive.css" rel="stylesheet">
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery.prettyPhoto.js"></script>
+    <script src="../static/js/jquery.isotope.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script src="../static/js/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+    <title>Title</title>
+</head>
+
+<body>
+<!-- 头部菜单 -->
+<nav class="navbar navbar-inverse" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:5000/"><img src="../static/img/logo.png" alt="logo"
+                                                                       height="80"></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li><a href="http://localhost:5000/">Home</a></li>
+                <li class="active"><a href="http://localhost:5000/visit">按种类浏览</a></li>
+                <li><a href="http://localhost:5000/search">搜索图片</a></li>
+                <li><a href="http://localhost:5000/upload">上传图片</a></li>
+            </ul>
+        </div>
+    </div><!--/.container-->
+</nav><!--/nav-->
+<!-- 主体 -->
+<div>
+    <!-- 左侧固定导航栏 -->
+    <div class="panel-group" id="panelContainer">
+        <div class="panel-item">
+            <div id="cane" class="panel-heading" onclick="button_clicked(this.id)">
+                <form style="display: none" action="http://localhost:5000/visit" enctype="multipart/form-data"
+                      method="post">
+                    <input type="text" value="cane" name="id">
+                    <input type="submit" id="can_btn">
+                </form>
+                <div class="word">狗</div>
+            </div>
+        </div>
+        <div class="panel-item">
+            <div id="cavallo" class="panel-heading" onclick="button_clicked(this.id)">
+                <form style="display: none" action="http://localhost:5000/visit" enctype="multipart/form-data"
+                      method="post">
+                    <input type="text" value="cavallo" name="id">
+                    <input type="submit" id="cav_btn">
+                </form>
+                <div class="word">马</div>
+            </div>
+        </div>
+        <div class="panel-item">
+            <div id="elefante" class="panel-heading" onclick="button_clicked(this.id)">
+                <form style="display: none" action="http://localhost:5000/visit" enctype="multipart/form-data"
+                      method="post">
+                    <input type="text" value="elefante" name="id">
+                    <input type="submit" id="ele_btn">
+                </form>
+                <div class="word">大象</div>
+            </div>
+        </div>
+        <div class="panel-item">
+            <div id="farfalla" class="panel-heading" onclick="button_clicked(this.id)">
+                <form style="display: none" action="http://localhost:5000/visit" enctype="multipart/form-data"
+                      method="post">
+                    <input type="text" value="farfalla" name="id">
+                    <input type="submit" id="far_btn">
+                </form>
+                <div class="word">蝴蝶</div>
+            </div>
+        </div>
+        <div class="panel-item">
+            <div id="gallina" class="panel-heading" onclick="button_clicked(this.id)">
+                <form style="display: none" action="http://localhost:5000/visit" enctype="multipart/form-data"
+                      method="post">
+                    <input type="text" value="gallina" name="id">
+                    <input type="submit" id="gal_btn">
+                </form>
+                <div class="word">鸡</div>
+            </div>
+        </div>
+        <div class="panel-item">
+            <div id="gatto" class="panel-heading" onclick="button_clicked(this.id)">
+                <form style="display: none" action="http://localhost:5000/visit" enctype="multipart/form-data"
+                      method="post">
+                    <input type="text" value="gatto" name="id">
+                    <input type="submit" id="gat_btn">
+                </form>
+                <div class="word">猫</div>
+            </div>
+        </div>
+        <div class="panel-item">
+            <div id="mucca" class="panel-heading" onclick="button_clicked(this.id)">
+                <form style="display: none" action="http://localhost:5000/visit" enctype="multipart/form-data"
+                      method="post">
+                    <input type="text" value="mucca" name="id">
+                    <input type="submit" id="muc_btn">
+                </form>
+                <div class="word">牛</div>
+            </div>
+        </div>
+        <div class="panel-item">
+            <div id="pecora" class="panel-heading" onclick="button_clicked(this.id)">
+                <form style="display: none" action="http://localhost:5000/visit" enctype="multipart/form-data"
+                      method="post">
+                    <input type="text" value="pecora" name="id">
+                    <input type="submit" id="pec_btn">
+                </form>
+                <div class="word">羊</div>
+            </div>
+        </div>
+        <div class="panel-item">
+            <div id="ragno" class="panel-heading" onclick="button_clicked(this.id)">
+                <form style="display: none" action="http://localhost:5000/visit" enctype="multipart/form-data"
+                      method="post">
+                    <input type="text" value="ragno" name="id">
+                    <input type="submit" id="rag_btn">
+                </form>
+                <div class="word">蜘蛛</div>
+            </div>
+        </div>
+        <div class="panel-item">
+            <div id="scoiattolo" class="panel-heading" onclick="button_clicked(this.id)">
+                <form style="display: none" action="http://localhost:5000/visit" enctype="multipart/form-data"
+                      method="post">
+                    <input type="text" value="scoiattolo" name="id">
+                    <input type="submit" id="sco_btn">
+                </form>
+                <div class="word">松鼠</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 显示容器 -->
+    <div style="margin-left: 100px; text-align: center">
+        <!-- 显示主体 -->
+        <div style="position: absolute; top: 100px; margin-left: 50px; background-size: cover; ">
+            <!-- 图片瀑布流 -->
+            <div>
+                <div class="waterfall">
+                    {% if FileList %}
+                        {% for i in FileList %}
+                            <figure>
+                                <img src="{{ i }}">
+                            </figure>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    /* 左侧导航栏CSS */
+    .panel-group {
+        width: 100px;
+        height: 100%;
+        top: calc(170px);
+        float: left;
+        overflow: auto;
+        position: fixed;
+        margin-left: 20px
+    }
+
+    .panel-item {
+        margin: 10px;
+        border-radius: 15px;
+        border:2px solid #000;
+        text-align:center;
+        cursor: pointer;
+    }
+
+    .panel-item:hover {
+        border: 2px solid #fff;
+        background-color: skyblue;
+    }
+
+    .word {
+        font-size: 15px;
+        font-weight: 700;
+        color: #000;
+    }
+
+    /* 瀑布流CSS */
+    .waterfall {
+        column-width: 400px;
+        column-gap: 15px;
+        width: 100%;
+        max-width: 100%;
+        margin: 50px auto;
+    }
+
+    .waterfall figure {
+        display: inline-block;
+        column-break-inside: avoid;
+        border-radius: 8px;
+    }
+
+    .waterfall figure img {
+        width: 400px;
+        height: auto;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+
+    .checked_type {
+        margin: 10px;
+        border-radius: 15px;
+        background-color: #409EFF;
+        color: aliceblue;
+    }
+
+</style>
+
+<script>
+    //左侧导航栏下拉功能
+    $(function () {
+        $(".panel-heading").on("click", function (e) {
+            var idLength = e.currentTarget.id.length;
+            var index = e.currentTarget.id.substr(idLength - 1, idLength);
+            $("#sub" + index).on('hidden.bs.collapse', function () {
+                $(e.currentTarget).find("span").removeClass("glyphicon glyphicon-triangle-bottom");
+                $(e.currentTarget).find("span").addClass("glyphicon glyphicon-triangle-right");
+            })
+            $("#sub" + index).on('shown.bs.collapse', function () {
+                $(e.currentTarget).find("span").removeClass("glyphicon glyphicon-triangle-right");
+                $(e.currentTarget).find("span").addClass("glyphicon glyphicon-triangle-bottom");
+            })
+        })
+
+        $(".panel-body > .nav > li > a").on("click", function (e) {
+            alert(e.currentTarget.textContent);
+        });
+    });
+
+    //选择动物种类并提交给后端
+    function button_clicked(id) {
+        var str = ['can_btn', 'cav_btn', 'ele_btn', 'far_btn', 'gal_btn', 'gat_btn', 'muc_btn', 'pec_btn', 'rag_btn', 'sco_btn'];
+        var idList = ['cane', 'cavallo', 'elefante', 'farfalla', 'gallina', 'gatto', 'mucca', 'pecora', 'ragno', 'scoiattolo'];
+        var flag = null;
+        for (let i = 0; i < 10; i++) {
+            if (id == idList[i]) {
+                flag = str[i];
+                break;
+            }
+        }
+        const button = document.getElementById(flag);
+        button.click();
+    }
+
+</script>
+
+</body>
+</html>

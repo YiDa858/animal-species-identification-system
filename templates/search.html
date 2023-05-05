@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  css、js引入  -->
+    <link rel="stylesheet" href="../static/js/BootStrap.js" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/dropzone.css" type="text/css"/>
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/BootStrap.js" crossorigin="anonymous"></script>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/animate.min.css" rel="stylesheet">
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet">
+    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="../static/css/responsive.css" rel="stylesheet">
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery.prettyPhoto.js"></script>
+    <script src="../static/js/jquery.isotope.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script src="../static/js/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <title>上传页面</title>
+</head>
+<body>
+<!--  头部菜单  -->
+<nav class="navbar navbar-inverse" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:5000/"><img src="../static/img/logo.png" alt="logo"
+                                                                       height="80"></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li><a href="http://localhost:5000/">Home</a></li>
+                <li><a href="http://localhost:5000/visit">按种类浏览</a></li>
+                <li class="active"><a href="http://localhost:5000/search">搜索图片</a></li>
+                <li><a href="http://localhost:5000/upload">上传图片</a></li>
+                <!-- <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="blog-item.html">Blog Single</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="404.html">404</a></li>
+                        <li><a href="shortcodes.html">Shortcodes</a></li>
+                    </ul>
+                </li> -->
+            </ul>
+        </div>
+    </div><!--/.container-->
+</nav><!--/nav-->
+<!--  内容主体  -->
+<main role="main" style="height: calc(100vh - 80px)">
+    <!--  空白div，用于占位  -->
+    <div style="height: calc(50vh - 80px - 25px)" id="space"></div>
+    <!--  搜索框  -->
+    <div style="margin: auto;" id="search_place">
+        <form action="http://localhost:5000/search" method="post" id="search_form">
+            <div class="container_search">
+                <input class="search_box" type="text" name="search_input" style="width: 80%" id="search_input">
+                <button type="submit" style="background: transparent; width: 10%; border: none" id="search_button">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <!--  图片展示组件  -->
+    <!--  图片瀑布流  -->
+    <div>
+        <div class="waterfall">
+            {% if FileList %}
+                {% for i in FileList %}
+                    <figure>
+                        <img src="{{ i }}">
+                    </figure>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</main>
+
+<script>
+    {% if FileList %}
+        //  搜索后重新加载页面将占位的div高度设为0
+        window.onload = function () {
+            // let form = document.getElementById("search_form");
+            // let input = document.getElementById("search_input");
+            // let button = document.getElementById("search_button");
+            // let place = document.getElementById("search_place");
+            let space = document.getElementById("space");
+
+            space.setAttribute('style', 'height: 10px');
+        }
+    {% endif %}
+</script>
+
+<style>
+    /* 搜索框CSS */
+    .container_search {
+        display: flex;
+        max-width: 800px;
+        height: 40px;
+        width: 100%;
+        align-items: center;
+        border-radius: 20px;
+        background-color: #fff;
+        margin: auto;
+        border: #409EFF 2px solid
+    }
+
+    .container_search .search_box {
+        margin-left: 20px;
+        margin-right: 20px;
+        flex: auto;
+        border: none;
+        background: transparent;
+        font-size: 16px;
+        outline: none;
+        min-width: 0;
+        text-overflow: ellipsis;
+    }
+
+
+    /* 瀑布流CSS */
+    .waterfall {
+        column-width: 320px;
+        column-gap: 15px;
+        width: 100%;
+        max-width: 100%;
+        padding: 25px 25px;
+    }
+
+    .waterfall figure {
+        display: inline-block;
+        column-break-inside: avoid;
+        border-radius: 8px;
+    }
+
+    .waterfall figure img {
+        width: 368px;
+        height: auto;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+</style>
+
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <link rel="stylesheet" href="../static/js/BootStrap.js" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="../static/css/dropzone.css" type="text/css"/> -->
+    <link rel="stylesheet" href="../static/js/BootStrap.js" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/dropzone.css" type="text/css"/>
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/BootStrap.js" crossorigin="anonymous"></script>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/animate.min.css" rel="stylesheet">
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet">
+    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="../static/css/responsive.css" rel="stylesheet">
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery.prettyPhoto.js"></script>
+    <script src="../static/js/jquery.isotope.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script src="../static/js/wow.min.js"></script>
+
+
+    {#    <script src="../static/js/jquery.js"></script>#}
+    {#    <script src="../static/js/BootStrap.js" crossorigin="anonymous"></script>#}
+    {#    <script src="../static/js/jquery.prettyPhoto.js"></script>#}
+    {#    <script src="../static/js/jquery.isotope.min.js"></script>#}
+    {#    <link href="../static/css/bootstrap.min.css" rel="stylesheet">#}
+    {#    <link href="../static/css/font-awesome.min.css" rel="stylesheet">#}
+    {#    <link href="../static/css/animate.min.css" rel="stylesheet">#}
+    {#    <link href="../static/css/prettyPhoto.css" rel="stylesheet">#}
+    {#    <link href="../static/css/main.css" rel="stylesheet">#}
+    {#    <link href="../static/css/responsive.css" rel="stylesheet">#}
+    {#    <script src="../static/js/bootstrap.min.js"></script>#}
+    {##}
+    {#    <script src="../static/js/main.js"></script>#}
+    {#    <script src="../static/js/wow.min.js"></script>#}
+
+    <meta charset="UTF-8">
+    <title>上传页面</title>
+</head>
+<body>
+<!-- author: liu -->
+<!--  头部菜单  -->
+<nav class="navbar navbar-inverse" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:5000/"><img src="../static/img/logo.png" alt="logo"
+                                                                       height="80"></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li><a href="http://localhost:5000/">Home</a></li>
+                <li><a href="http://localhost:5000/visit">按种类浏览</a></li>
+                <li><a href="http://localhost:5000/search">搜索图片</a></li>
+                <li class="active"><a href="http://localhost:5000/upload">上传图片</a></li>
+            </ul>
+        </div>
+    </div><!--/.container-->
+</nav><!--/nav-->
+<!--  模糊背景  -->
+<div class="main"></div>
+<!--  主体  -->
+<div class="content-front container" style="width: 100%">
+    <!--  上传图片组件  -->
+    <div style="text-align: center" class="col-md-12">
+        <form id="update_form" enctype="multipart/form-data" style="display: none" method="post"
+              action="http://localhost:5000/upload_file">
+            <input id="update_image" name="image" type="file" class="form-control-file">
+            <input id="update" type="submit">
+        </form>
+        <div class="col-md-4 col-md-offset-2" style="border: 5px">
+            <button style="border: 5px" id="choose_button" type="button" onclick="choose_button_clicked()">选择文件
+            </button>
+            <span style="width: 5px"></span>
+            <button style="border: 5px" id="update_button" type="button" onclick="update_button_clicked()">上传
+            </button>
+        </div>
+        <!--  识别模式单选  -->
+        <div class="radio-style col-md-6">
+            <input type="radio" name='type' id='reduced' onclick="reduced_clicked()" checked>
+            <label for="reduced">粗略识别<span class='glyphicon glyphicon-ok'></span> </label>
+            <input type="radio" name='type' id='compile' onclick="compile_clicked()">
+            <label for="compile">精细识别<span class='glyphicon glyphicon-ok'></span> </label>
+        </div>
+        <div class="radio-style col-md-6">
+            <input type="checkbox" name='multi' id='multi' onclick="multi_button_clicked()">
+            <label for="multi">是否为多种动物识别<span class='glyphicon glyphicon-ok'></span> </label>
+        </div>
+    </div>
+</div>
+<div class="homepage" style="position: absolute;left: 7%;top: 250px;width:86%;">
+    <!-- <div style="top: 200px"> -->
+    <!--  结果回显组件  -->
+    {% if raw_image %}
+        <section id="services" class="service-item" style="margin-top: 30px;border-radius: 20px 10px 20px 10px;padding-top: 30px;padding-bottom: 40px;">
+            <div style="margin:auto;width:800px;height:250px;display: flex;justify-content: center;align-items: center;">
+                <img id="raw_img" src="{{ raw_image }}">
+            </div>
+            <div class="center wow fadeInDown" style="padding:5px 3px 3px 3px;width:fit-content;margin:auto;margin-top:20px;border-radius: 10px 10px 10px 10px;">
+                <h2>识别结果</h2>
+            </div>
+            {% if result_dict %}
+            <div class="container" style="padding: 10px 1px 10px 1px;">
+                <!-- <div class="center wow fadeInDown" style="margin-top:20px;">
+                    <h2>识别结果(右方图片为{{ message }})</h2>
+                </div> -->
+                <div class="self-block">
+                    <div style="float: left;margin-left: 0px;">
+                        <div class="card1 fadeInDown">
+                            <div class="skill">
+                                <h2>动物种类</h2>
+                                <!-- <p>111</p> -->
+                                {% if result_dict["label"][0] %}
+                                <div class="progress-wrap">
+                                    <h3>{{ result_dict["label"][0] }}</h3>
+                                    <div class="progress">
+                                      <div class="progress-bar color1" id="progress_bar1">
+                                        <span class="bar-width">{{ result_dict["score"][0] }}%</span>
+                                      </div>
+        
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if result_dict["label"][1] %}
+                                <div class="progress-wrap">
+                                    <h3>{{ result_dict["label"][1] }}</h3>
+                                    <div class="progress">
+                                      <div class="progress-bar color2" id="progress_bar2">
+                                        <span class="bar-width">{{ result_dict["score"][1] }}%</span>
+                                      </div>
+        
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if result_dict["label"][2] %}
+                                <div class="progress-wrap">
+                                    <h3>{{ result_dict["label"][2] }}</h3>
+                                    <div class="progress">
+                                      <div class="progress-bar color3" id="progress_bar3">
+                                        <span class="bar-width">{{ result_dict["score"][2] }}%</span>
+                                      </div>
+        
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if result_dict["label"][3] %}
+                                <div class="progress-wrap">
+                                    <h3>{{ result_dict["label"][3] }}</h3>
+                                    <div class="progress">
+                                      <div class="progress-bar color4" id="progress_bar4">
+                                        <span class="bar-width">{{ result_dict["score"][3] }}%</span>
+                                      </div>
+        
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="float: left;margin-left: 20px;">
+                        <div class="card fadeInDown">
+                            <div class="showresult" style="padding: 5px 5px 5px 5px;">
+                                <h2 style="color: #000;">数据可视化/图片分割</h2>
+                            </div>
+                            <div style="width:430px;height:300px;display: flex;justify-content: center;align-items: center;">
+                                <img id="visual_img" src="{{ visualize_image }}">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+            {% endif %}
+            
+            {% if datas %}
+            <div class="card2">
+                <div class="wow fadeInDown" style="margin:auto;">
+                    <h2>相似图片前4名</h2>
+                    <br/>
+                </div>
+                
+                <div class="row">
+                    {% for i in index_list %}
+                    <div class="col-xs-12 col-sm-4 col-md-3">
+                        <div class="recent-work-wrap">
+                            <div style="width:250px; display: flex;justify-content: center;align-items: center;">
+                                <img class="img-responsive" id="follo" style="width: 250px" src="{{ datas[i-1]['file_name'] }}" alt="">
+                            </div>
+                            <div class="overlay" style="width: 250px;">
+                                <div class="recent-work-inner">
+                                    <h3><a href="#">第{{ i }}名</a></h3>
+                                    <p>Score:{{ datas[i-1]['score'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %} -->
+        </section>
+    {% endif %}
+    
+    <style>
+        .card {
+            width: 430px;
+            height: 400px;
+            margin-left: 20px;
+            border-radius: 20px 20px 20px 20px;
+            background-color: #eeeddd;
+        }
+
+        .card1 {
+            width: 650px;
+            height: 400px;
+            margin-left: 20px;
+            border-radius: 20px 20px 20px 20px;
+            background-color: #eeeddd;
+            padding: 10px 20px 10px 20px;
+        }
+
+        .card2 {
+            width: 1150px;
+            margin:auto;
+            margin-top: 30px;
+            border-radius: 20px 20px 20px 20px;
+            background-color: #eeeddd;
+            padding: 20px 20px 20px 20px;
+        }
+
+        .self-img {
+            height: 240px;
+            margin-left: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            float: left;
+        }
+
+        .showresult {
+            width: 400px;
+            height: 70px;
+            margin-left: 20px;
+            /* float: left; */
+            /* margin-top: 5px; */
+            /* text-align:center; */
+            line-height: normal;
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+        }
+
+        .main {
+            background: url("../static/img.png");
+            height: 1500px;
+            filter: blur(1px);
+            float: left;
+            width: 100%;
+        }
+
+        .content-front {
+            display: flex;
+            position: absolute;
+            top: 100px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #409EFF;
+            border-radius: 15px;
+            color: aliceblue;
+            margin: 0;
+            border: 0;
+            width: 200px;
+            height: 50px;
+        }
+
+        /* 将原来的单选框隐藏,注意display:none 只是不显示该标签，该标签仍然存在于DOM树中 */
+        /* 虽然input框已经隐藏了，但是应为label和对应的input框是通过id关联的，所以我们仍然可以通过选择label来选中input框 */
+        .radio-style input {
+            display: none;
+        }
+
+        .radio-style span {
+            display: none;
+        }
+
+        .radio-style label {
+            background-color: white;
+            float: left;
+            border: 1px solid #337ab7;
+            border-radius: 5px;
+            padding: 2px 10px 2px 10px;
+            /* 从上边开始，顺时针顺序:上 右 下 左 */
+            margin: 5px;
+            line-height: 20px;
+            min-width: 80px;
+            text-align: center;
+            font-weight: lighter;
+            cursor: pointer;
+        }
+
+        /* 设置radio-style中的当input被选中时的紧接在其后的label的样式 */
+        .radio-style input:checked + label {
+            color: #fff;
+            background: #337ab7;
+        }
+
+        .radio-style input:checked + label span {
+            display: inline;
+        }
+    </style>
+    <script>
+        // 标志识别模式，0为粗略识别，1为精细识别
+        let flag = 0;
+        // 多种动物识别标志，0为单种动物，1为多种动物
+        let multi_flag = 0;
+
+        // 标志位置0
+        function reduced_clicked() {
+            flag = 0;
+        }
+
+        // 标志位置1
+        function compile_clicked() {
+            flag = 1;
+        }
+
+        // 修改多种动物标志位
+        function multi_button_clicked() {
+            if (multi_flag === 0) {
+                multi_flag = 1;
+            } else if (multi_flag === 1) {
+                multi_flag = 0;
+            }
+        }
+
+        /**
+         * 用于向后端发起请求
+         */
+        function update_button_clicked() {
+            // 获取提交form表单对象及提交按钮对象
+            const update = document.getElementById("update");
+            let form = document.getElementById('update_form');
+            // 根据标志位修改提交路由（form表单action属性）
+            form.setAttribute("action", "http://localhost:5000/upload_file/" + flag + multi_flag);
+            alert('上传需要一段时间，请耐心等待~');
+            // 提交
+            update.click();
+        }
+
+        /**
+         * 用于激活选择文件
+         */
+        function choose_button_clicked() {
+            // 获取提交form表单对象及提交按钮对象
+            const update_func = document.getElementById("update_image");
+            // 激活隐藏的form表单中的选择文件按钮
+            update_func.click();
+        }
+ 
+
+    </script>
+</div>
+<script>
+    {% if not_allowed %}
+        alert("您所上传的图片格式错误，请提交后缀为.jpg .jpeg的图片~")
+    {% endif %}
+    // {% if result_dict %}
+        window.onload = function () {
+            //图片大小自适应
+            resizeImg = function(img, maxWidth, maxHeight){ 
+                var w = img.width, h = img.height; 
+                // 当图片比预览区域小时不做任何改变 
+                if(w < maxWidth && h < maxHeight) return; 
+                // 当实际图片比例大于预览区域宽高比例时 
+                // 缩放图片宽度，反之缩放图片宽度 
+                w/h > maxWidth/maxHeight ? img.width = maxWidth : img.height = maxHeight; 
+            }; 
+            var raw_img = document.getElementById('raw_img');
+            resizeImg(raw_img, 800, 250); 
+            var visual_img = document.getElementById('visual_img');
+            resizeImg(visual_img, 430, 300);
+            // follo
+            //score条长度加载
+            var progress_bar
+            {% if result_dict["label"][0] %}
+                progress_bar = document.getElementById('progress_bar1');
+                progress_bar.style.width = {{ result_dict["score"][0] }} + "%";
+            {% endif %}
+
+            {% if result_dict["label"][1] %}
+                progress_bar = document.getElementById('progress_bar2');
+                progress_bar.style.width = {{ result_dict["score"][1] }} + "%";
+            {% endif %}
+
+            {% if result_dict["label"][2] %}
+                progress_bar = document.getElementById('progress_bar3');
+                progress_bar.style.width = {{ result_dict["score"][2] }} + "%";
+            {% endif %}
+
+            {% if result_dict["label"][3] %}
+                progress_bar = document.getElementById('progress_bar4');
+                progress_bar.style.width = {{ result_dict["score"][3] }} + "%";
+            {% endif %}
+            
+            //反馈功能
+            {% if result_dict %}
+                asking = function(){
+                    let con = confirm("这个结果对吗？");
+                    if (con === true) {
+                        alert("谢谢您的反馈");
+                    } else {
+                        let pro = prompt("那么结果是?");
+                        if (pro !== null && pro !== '') {
+                            alert("谢谢您的反馈");
+                        }
+                    }
+                }
+            setTimeout('asking()', 3000)
+            {% endif %}
+        }
+    // {% endif %}
+</script>
+</body>
+</html>
+

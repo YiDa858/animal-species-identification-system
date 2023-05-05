@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--  css、js引入  -->
+    <link rel="stylesheet" href="../static/js/BootStrap.js" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/dropzone.css" type="text/css"/>
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/BootStrap.js" crossorigin="anonymous"></script>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/animate.min.css" rel="stylesheet">
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet">
+    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="../static/css/responsive.css" rel="stylesheet">
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery.prettyPhoto.js"></script>
+    <script src="../static/js/jquery.isotope.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script src="../static/js/wow.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://localhost:5000/"><img src="../static/img/logo.png" alt="logo" height="80"></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="http://localhost:5000/">Home</a></li>
+                    <li><a href="http://localhost:5000/visit">按种类浏览</a></li>
+                    <li><a href="http://localhost:5000/search">搜索图片</a></li>
+                    <li><a href="http://localhost:5000/upload">上传图片</a></li>
+                    <!-- <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog-item.html">Blog Single</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="404.html">404</a></li>
+                            <li><a href="shortcodes.html">Shortcodes</a></li>
+                        </ul>
+                    </li> -->                      
+                </ul>
+            </div>
+        </div><!--/.container-->
+    </nav><!--/nav-->
+
+
+    <section id="main-slider" class="no-margin">
+        <div class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+                <li data-target="#main-slider" data-slide-to="1"></li>
+                <li data-target="#main-slider" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+
+                <div class="item active" style="background-image: url(../static/image0.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
+                                    <!-- <a class="btn-slide animation animated-item-3" href="#">Read More</a> -->
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                <div class="slider-img">
+                                    <img src="../static/image0.jpg" class="img-responsive">
+                                </div>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div><!--/.item-->
+
+                <div class="item" style="background-image: url(../static/image0.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
+                                    <!-- <a class="btn-slide animation animated-item-3" href="#">Read More</a> -->
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                <div class="slider-img">
+                                    <img src="images/slider/img2.png" class="img-responsive">
+                                </div>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div><!--/.item-->
+
+                <div class="item" style="background-image: url(../static/image0.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
+                                    <!-- <a class="btn-slide animation animated-item-3" href="#">Read More</a> -->
+                                </div>
+                            </div>
+                            <!-- <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                <div class="slider-img">
+                                    <img src="images/slider/img3.png" class="img-responsive">
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div><!--/.item-->
+            </div><!--/.carousel-inner-->
+        </div><!--/.carousel-->
+        <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <a class="next hidden-xs" href="#main-slider" data-slide="next">
+            <i class="fa fa-chevron-right"></i>
+        </a>
+    </section><!--/#main-slider-->
+<!-- author: liu  头部菜单 -->
+<!-- <nav style="border-bottom: 1px solid #ccc; height: 60px">
+    <div class="container-fluid" style="display: flex">
+        <div class="navbar-header" style="margin: 5px">
+            <a class="navbar-brand" href="http://localhost:5000/"
+               style="color: #409EFF; font-weight: bold">动物种类识别系统</a>
+        </div>
+        <div style="flex: 1"></div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin: 5px; width: auto">
+            <ul class="nav navbar-nav">
+                <li><a href="http://localhost:5000/visit" style="color: #409EFF; font-weight: bold">按种类浏览</a>
+                </li>
+                <li><a href="http://localhost:5000/search" style="color: #409EFF; font-weight: bold">搜索图片</a>
+                </li>
+                <li><a href="http://localhost:5000/upload" style="color: #409EFF; font-weight: bold">上传图片</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+    
+<!-- author: luan 瀑布流展示 -->
+    
+    
+
+    <!-- <div>
+        <div class="jumbotron">
+            <div class="container" style="text-align: center; color: #409EFF">
+                <h1>动物种类识别系统</h1>
+            </div>
+        </div>
+        <div class="waterfall">
+            <figure>
+                <img src="../static/image0.jpg" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image1.jpg" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image4.jpg" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image3.jpg" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image2.jpg" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image5.jpg" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image6.jpg" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image7.jpg" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image8.jpg" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image9.png" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image10.jpg" alt=""/>
+            </figure>
+            <figure>
+                <img src="../static/image11.png" alt=""/>
+            </figure>
+        </div>
+    </div> -->
+
+<style>
+    .waterfall {
+        column-width: 320px;
+        column-gap: 15px;
+        width: 100%;
+        max-width: 100%;
+        margin: 50px auto;
+    }
+
+    .waterfall figure {
+        display: inline-block;
+        box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+        /* column-break-inside: avoid; */
+        border-radius: 8px;
+    }
+
+    .waterfall figure img {
+        width: 368px;
+        height: auto;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+</style>
+<!-- <script src="js/jquery.js"></script> -->
+
+
+</body>
+</html>
